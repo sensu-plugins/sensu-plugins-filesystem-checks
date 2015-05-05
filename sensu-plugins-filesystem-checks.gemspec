@@ -31,12 +31,9 @@ Gem::Specification.new do |s|
   s.required_ruby_version  = '>= 1.9.3'
 
   s.add_runtime_dependency 'sensu-plugin'
-  s.add_runtime_dependency 'digest'
-  s.add_runtime_dependency 'fileutils'
-  s.add_runtime_dependency 'tempfile'
 
   s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'rubocop', '~> 0.30''
+  s.add_development_dependency 'rubocop', '~> 0.30'
   s.add_development_dependency 'rspec', '~> 3.1'
   s.add_development_dependency 'bundler', '~> 1.7'
   s.add_development_dependency 'rake', '~> 10.0'
