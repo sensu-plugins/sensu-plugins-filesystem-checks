@@ -22,7 +22,7 @@
 # NOTES:
 #
 # LICENSE:
-#   Copyright 2014 Yieldbot, Inc  <devops@yieldbot.com>
+#   Copyright 2014 Yieldbot, Inc  <Sensu-Plugins>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
