@@ -10,52 +10,19 @@
 ## Functionality
 
 ## Files
- * bin/check-dir-count
- * bin/check-checksums
- * bin/check-file-exists
- * bin/check-fs-writable
- * bin/check-mtime
- * bin/check-tail
- * bin/metric-dirsize
- * bin/metric-filesize
+ * bin/check-dir-count.rb
+ * bin/check-checksums.rb
+ * bin/check-file-exists.rb
+ * bin/check-fs-writable.rb
+ * bin/check-mtime.rb
+ * bin/check-tail.rb
+ * bin/metric-dirsize.rb
+ * bin/metric-filesize.rb
 
 ## Usage
 
 ## Installation
 
-Add the public key (if you haven’t already) as a trusted certificate
-
-```
-gem cert --add <(curl -Ls https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem)
-gem install sensu-plugins-filesystem-checks -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install sensu-plugins-filesystem-checks`
-
-#### Bundler
-
-Add *sensu-plugins-disk-checks* to your Gemfile and run `bundle install` or `bundle update`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem 'sensu-plugins-filesystem-checks' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package 'sensu-plugins-filesystem-checks' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
 ## Notes
