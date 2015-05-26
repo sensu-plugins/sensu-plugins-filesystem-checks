@@ -13,7 +13,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: rubysl-tempfile
 #
 # USAGE:
 #   ./check-fs-writable.rb --auto  (check all volgroups in fstab)

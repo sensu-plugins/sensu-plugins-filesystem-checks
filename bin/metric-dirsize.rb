@@ -16,7 +16,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: socket
 #
 # USAGE:
 #   metric-dirsize.rb --dir /var/backups/postgres/ --real
