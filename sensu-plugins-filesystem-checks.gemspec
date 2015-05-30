@@ -22,11 +22,11 @@ Gem::Specification.new do |s|
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-filesystem-checks'
   s.license                = 'MIT'
   s.metadata               = { 'maintainer'         => '',
-                               'development_status' => 'unmaintained',
+                               'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended',
                                'release_draft'      => 'false',
                                'release_prerelease' => 'false'
-                               }
+                              }
   s.name                   = 'sensu-plugins-filesystem-checks'
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
