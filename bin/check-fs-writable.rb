@@ -67,10 +67,10 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   end
 
   # Get the volgroups
-    #
-    def acquire_vol_groups
-      `vgdisplay|grep 'VG Name'|awk '{print $3}'`
-    end
+  #
+  def acquire_vol_groups
+    `vgdisplay|grep 'VG Name'|awk '{print $3}'`
+  end
 
   # Get the mount points from the self namespace
   #
@@ -82,7 +82,7 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
         mnt_pts << mnt
       end
     end
-    return mnt_pts
+    mnt_pts
   end
 
   # Does proc list the mount point as rw
@@ -124,7 +124,7 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
     rw_test?(mount_info)
     puts "The critical mount points according to proc are: #{ @crit_pt_proc }" if config[:debug]
     puts "The critical mount points according to actual testing are: #{ @crit_pt_test }" if config[:debug]
-    return true
+    true
   end
 
   # Create a tempfile as each mount point and attempt to write a line to it
