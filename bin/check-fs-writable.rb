@@ -66,10 +66,23 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
     end
   end
 
+  # Get the volgroups
+  #
+  def acquire_vol_groups
+    `vgdisplay|grep 'VG Name'|awk '{print $3}'`
+  end
+
   # Get the mount points from the self namespace
   #
   def acquire_mnt_pts
-    `grep VolGroup /proc/self/mounts | awk '{print $2, $4}' | awk -F, '{print $1}' | awk '{print $1, $2}'`
+    mnt_pts = []
+    vol_groups = acquire_vol_groups.split("\n")
+    vol_groups.each  do |vol_group|
+      `grep #{vol_group} /proc/self/mounts | awk '{print $2, $4}' | awk -F, '{print $1}' | awk '{print $1, $2}'`.split("\n").each do |mnt|
+        mnt_pts << mnt
+      end
+    end
+    mnt_pts
   end
 
   # Does proc list the mount point as rw
@@ -102,9 +115,7 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   # namespace in proc
   #
   def auto_discover
-    # #YELLOW
-    # this will only work for a single namespace as of now
-    mount_info = acquire_mnt_pts.split("\n")
+    mount_info = acquire_mnt_pts
     warning 'No mount points found' if mount_info.length == 0
     # #YELLOW
     #  I want to map this at some point to make it pretty and eaiser to read for large filesystems
@@ -113,6 +124,7 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
     rw_test?(mount_info)
     puts "The critical mount points according to proc are: #{ @crit_pt_proc }" if config[:debug]
     puts "The critical mount points according to actual testing are: #{ @crit_pt_test }" if config[:debug]
+    true
   end
 
   # Create a tempfile as each mount point and attempt to write a line to it
