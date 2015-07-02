@@ -53,13 +53,14 @@ class Checksum < Sensu::Plugin::Check::CLI
       unknown 'We have nothing to compare this file with.'
     end
 
-    hash = config[:hash] || Digest::SHA2.file(files.first).hexdigest
+    hashfile = config[:hash] || Digest::SHA2.file(files.first).hexdigest
+    hash = IO.read(hashfile).chomp
 
     errors = []
 
     files.each do |file|
       if File.exist?(file)
-        file_hash = Digest::SHA2.file(file).hexdigest
+        file_hash = Digest::SHA2.file(file).hexdigest.chomp
         errors << "#{file} does not match" if file_hash != hash
       else
         errors << "#{file} does not exist"
