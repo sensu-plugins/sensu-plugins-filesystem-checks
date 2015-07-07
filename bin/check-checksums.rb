@@ -39,6 +39,12 @@ class Checksum < Sensu::Plugin::Check::CLI
          description: 'The hash these files must hash as. If unspecified the files will be compared to the first file.',
          short: '-h SHA2HASH',
          long: '--hash SHA2HASH'
+  
+  option :hashfile,
+         description: 'The file containing the hash these files must hash as.',
+         # i.e. sha256sum filename | awk '{print $1}' > filename.sha256sum
+         short: '-H SHA2HASHFILE',
+         long: '--hashfile SHA2HASHFILE'
 
   option :warn_only,
          description: "Warn instead of critical if they don't match",
@@ -49,17 +55,21 @@ class Checksum < Sensu::Plugin::Check::CLI
   def run
     files = config[:files].split(',')
 
-    if files.length == 1 && !config[:hash]
+    if files.length == 1 && !config[:hash] && !config[:hashfile]
       unknown 'We have nothing to compare this file with.'
     end
-
-    hash = config[:hash] || Digest::SHA2.file(files.first).hexdigest
-
+    
+    if config[:hashfile]
+      hash = IO.read(config[:hashfile]).chomp
+    else
+      hash = config[:hash] || Digest::SHA2.file(files.first).hexdigest
+    end 
+    
     errors = []
 
     files.each do |file|
       if File.exist?(file)
-        file_hash = Digest::SHA2.file(file).hexdigest
+        file_hash = Digest::SHA2.file(file).hexdigest.chomp
         errors << "#{file} does not match" if file_hash != hash
       else
         errors << "#{file} does not exist"
