@@ -1,6 +1,6 @@
 ## Sensu-Plugins-filesystem-checks
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-filesystem-checks.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-filesystem-checks)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-filesystem-checks.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-filesystem-checks)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-filesystem-checks.svg)](http://badge.fury.io/rb/sensu-plugins-filesystem-checks)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks)
