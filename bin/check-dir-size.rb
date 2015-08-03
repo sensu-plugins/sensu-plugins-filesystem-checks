@@ -39,48 +39,47 @@ require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 
 class CheckDirSize < Sensu::Plugin::Check::CLI
-
   option :directory,
-    description: 'Directory to stat (full path not including trailing slash)',
-    short: '-d /path/to/directory',
-    long: '--directory /path/to/directory',
-    required: true
+         description: 'Directory to stat (full path not including trailing slash)',
+         short: '-d /path/to/directory',
+         long: '--directory /path/to/directory',
+         required: true
 
   option :warn,
-    description: 'The size (in bytes) of the directory where WARNING is raised',
-    short: '-w SIZE_IN_BYTES',
-    long: '--warn SIZE_IN_BYTES',
-    default: 3_500_000,
-    required: false
+         description: 'The size (in bytes) of the directory where WARNING is raised',
+         short: '-w SIZE_IN_BYTES',
+         long: '--warn SIZE_IN_BYTES',
+         default: 3_500_000,
+         required: false
 
   option :crit,
-    description: 'The size (in bytes) of the directory where CRITICAL is raised',
-    short: '-c SIZE_IN_BYTES',
-    long: '--critical SIZE_IN_BYTES',
-    default: 4_000_000,
-    required: false
+         description: 'The size (in bytes) of the directory where CRITICAL is raised',
+         short: '-c SIZE_IN_BYTES',
+         long: '--critical SIZE_IN_BYTES',
+         default: 4_000_000,
+         required: false
 
   option :ignore_missing,
-    description: 'Do not throw CRITICAL if the directory is missing',
-    long: '--ignore-missing',
-    boolean: true,
-    default: false,
-    required: false
+         description: 'Do not throw CRITICAL if the directory is missing',
+         long: '--ignore-missing',
+         boolean: true,
+         default: false,
+         required: false
 
   option :du_path,
-    description: 'The path to the `du` command',
-    long: '--du-path /path/to/du',
-    short: '-p /path/to/du',
-    default: '/usr/bin/du',
-    required: false
+         description: 'The path to the `du` command',
+         long: '--du-path /path/to/du',
+         short: '-p /path/to/du',
+         default: '/usr/bin/du',
+         required: false
 
   # Even though most everything should have 'du' installed by default, let's do a quick sanity check
   def check_external_dependency
-    critical "This system does not have 'du' at #{config[:du_path]}!" unless File.exists? config[:du_path]
+    critical "This system does not have 'du' at #{config[:du_path]}!" unless File.exist? config[:du_path]
   end
 
   def du_directory
-    if Dir.exists? config[:directory]
+    if Dir.exist? config[:directory]
       cmd = "#{config[:du_path]} #{config[:directory]} --bytes --summarize | /usr/bin/awk '{ printf \"%s\",$1 }'"
       @dir_size = `#{cmd}`
     else
