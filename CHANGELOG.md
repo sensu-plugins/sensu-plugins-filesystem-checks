@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+### Changed
+- Added 'check-dir-size.rb' for checking the total size of a directory
+- Recommited 'check-file-size.rb' from previous repo, with a couple of updates
 
 ## [0.0.3] - 2015-07-14
 ### Changed
