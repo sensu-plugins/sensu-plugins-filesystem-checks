@@ -3,10 +3,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## Unreleased
+## [Unreleased][unreleased]
+- nothing
+
+## [0.0.4] - 2015-08-04
 ### Changed
 - Added 'check-dir-size.rb' for checking the total size of a directory
 - Recommited 'check-file-size.rb' from previous repo, with a couple of updates
+- general gem cleanup
 
 ## [0.0.3] - 2015-07-14
 ### Changed
@@ -14,10 +18,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Added
 - can now use multi volgroups with autodiscovery
-
-## [0.0.3] - [2015-07-07]
-### Added
- - the ability to feed a file containing a hash into check-checksums.rb
+- the ability to feed a file containing a hash into check-checksums.rb
 
 ## [0.0.2] - [2015-06-02]
 ### Fixed
@@ -29,4 +30,3 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## 0.0.1 - [2015-04-30]
 ### Added
 - initial release
-
