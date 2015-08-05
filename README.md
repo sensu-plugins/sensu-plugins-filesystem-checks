@@ -10,9 +10,11 @@
 ## Functionality
 
 ## Files
- * bin/check-dir-count.rb
  * bin/check-checksums.rb
+ * bin/check-dir-count.rb
+ * bin/check-dir-size.rb
  * bin/check-file-exists.rb
+ * bin/check-file-size.rb
  * bin/check-fs-writable.rb
  * bin/check-mtime.rb
  * bin/check-tail.rb

@@ -6,7 +6,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased][unreleased]
 - nothing
 
-## [0.0.4] - 2015-08-04
+## [0.1.0] - 2015-08-04
+### Added
+- Added new checks for file and directory size
+
+## [0.0.4] - 2015-08-04 (Pulled)
 ### Changed
 - Added 'check-dir-size.rb' for checking the total size of a directory
 - Recommited 'check-file-size.rb' from previous repo, with a couple of updates
