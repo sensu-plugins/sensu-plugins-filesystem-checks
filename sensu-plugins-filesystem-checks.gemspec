@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.authors                = ['Sensu-Plugins and contributors']
   s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
-  s.description            = 'Sensu plugins for filesystems'
+  s.description            = 'This plugin provides native instrumentation for monitoring and metrics collection, including:health, usage, and various metrics of filesystem attributes.'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = Dir.glob('bin/**/*').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
