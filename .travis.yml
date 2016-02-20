@@ -1,19 +1,33 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-filesystem-checks.gemspec
+- gem install sensu-plugins-filesystem-checks-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: TGl7vZCnZoC7GmLkcBCihPCb9gTysLXpFJ4EpufVBzLj14zB6eh4D5pmmj/NDXzJ75MjP/VXk/aRSMN4Y5P9b3F23U7Bs3V2jf0waTCXambgmfuogMCAQ3wAY63bvQqGy2AMdvIo8SCbqLZ66SYQSQ2QgLCwFFnPW/QNOS3DGaM=
+  gem: sensu-plugins-filesystem-checks
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-filesystem-checks

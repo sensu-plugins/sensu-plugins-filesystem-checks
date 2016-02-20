@@ -28,3 +28,9 @@ RegexpLiteral:
 
 Style/Documentation:
   Enabled: false
+
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false

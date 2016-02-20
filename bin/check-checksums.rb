@@ -59,11 +59,11 @@ class Checksum < Sensu::Plugin::Check::CLI
       unknown 'We have nothing to compare this file with.'
     end
 
-    if config[:hashfile]
-      hash = IO.read(config[:hashfile]).chomp
-    else
-      hash = config[:hash] || Digest::SHA2.file(files.first).hexdigest
-    end
+    hash = if config[:hashfile]
+             IO.read(config[:hashfile]).chomp
+           else
+             config[:hash] || Digest::SHA2.file(files.first).hexdigest
+           end
 
     errors = []
 

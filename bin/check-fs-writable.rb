@@ -77,7 +77,7 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   def acquire_mnt_pts
     mnt_pts = []
     vol_groups = acquire_vol_groups.split("\n")
-    vol_groups.each  do |vol_group|
+    vol_groups.each do |vol_group|
       `grep #{vol_group} /proc/self/mounts | awk '{print $2, $4}' | awk -F, '{print $1}' | awk '{print $1, $2}'`.split("\n").each do |mnt|
         mnt_pts << mnt
       end
@@ -88,8 +88,8 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   # Does proc list the mount point as rw
   #
   def rw_in_proc?(mount_info)
-    mount_info.each  do |pt|
-      @crit_pt_proc << "#{pt.split[0]}" if pt.split[1] != 'rw'
+    mount_info.each do |pt|
+      @crit_pt_proc << pt.split[0].to_s if pt.split[1] != 'rw'
     end
   end
 
@@ -99,13 +99,13 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   #
   def rw_test?(mount_info)
     mount_info.each do |pt|
-      (Dir.exist? pt.split[0]) || (@crit_pt_test << "#{pt.split[0]}")
+      (Dir.exist? pt.split[0]) || (@crit_pt_test << pt.split[0].to_s)
       file = Tempfile.new('.sensu', pt.split[0])
       puts "The temp file we are writing to is: #{file.path}" if config[:debug]
       # #YELLOW
       #  need to add a check here to validate permissions, if none it pukes
-      file.write('mops') || @crit_pt_test << "#{pt.split[0]}"
-      file.read || @crit_pt_test << "#{pt.split[0]}"
+      file.write('mops') || @crit_pt_test << pt.split[0].to_s
+      file.read || @crit_pt_test << pt.split[0].to_s
       file.close
       file.unlink
     end
@@ -133,13 +133,13 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
   #
   def manual_test
     config[:dir].each do |d|
-      (Dir.exist? d) || (@crit_pt_test << "#{d}")
+      (Dir.exist? d) || (@crit_pt_test << d.to_s)
       file = Tempfile.new('.sensu', d)
       puts "The temp file we are writing to is: #{file.path}" if config[:debug]
       # #YELLOW
       #  need to add a check here to validate permissions, if none it pukes
-      file.write('mops') || @crit_pt_test << "#{d}"
-      file.read || @crit_pt_test << "#{d}"
+      file.write('mops') || @crit_pt_test << d.to_s
+      file.read || @crit_pt_test << d.to_s
       file.close
       file.unlink
     end

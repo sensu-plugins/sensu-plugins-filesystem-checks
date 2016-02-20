@@ -5,7 +5,6 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-filesystem-checks)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-filesystem-checks.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-filesystem-checks)
-[ ![Codeship Status for sensu-plugins/sensu-plugins-filesystem-checks](https://codeship.com/projects/4b97d0a0-db4c-0132-445b-5ad94843e341/status?branch=master)](https://codeship.com/projects/79592)
 
 ## Functionality
 
