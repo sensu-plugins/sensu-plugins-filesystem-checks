@@ -19,6 +19,7 @@
  * bin/check-tail.rb
  * bin/metric-dirsize.rb
  * bin/metric-filesize.rb
+ * bin/metric-nfsstat.rb
 
 ## Usage
 
