@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-- nothing
+### Added
+- Added 'metric-nfsstat.rb' for collecting nfsstat metrics
 
 ## [0.1.0] - 2015-08-04
 ### Added
