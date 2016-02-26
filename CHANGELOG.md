@@ -7,6 +7,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Added 'metrics-nfsstat.rb' for collecting nfsstat metrics
 
+### Changed
+- Renamed metric-{dirsize,filename} to metrics-{dirsize,filename}
+
 ## [0.1.0] - 2015-08-04
 ### Added
 - Added new checks for file and directory size
