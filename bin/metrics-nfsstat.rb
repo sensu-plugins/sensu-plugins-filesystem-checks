@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-#   metric-nfsstat
+#   metrics-nfsstat
 #
 # DESCRIPTION:
 #   Simple wrapper around `nfsstat` for getting nfs server/client stats.
