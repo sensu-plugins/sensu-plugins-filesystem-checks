@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   metric-filesize
+#   metrics-filesize
 #
 # DESCRIPTION:
 #   Simple wrapper around `stat` for getting file size stats,

@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   metric-dirsize
+#   metrics-dirsize
 #
 # DESCRIPTION:
 #   Simple wrapper around `du` for getting directory size stats,
@@ -18,7 +18,7 @@
 #   gem: sensu-plugin
 #
 # USAGE:
-#   metric-dirsize.rb --dir /var/backups/postgres/ --real
+#   metrics-dirsize.rb --dir /var/backups/postgres/ --real
 #
 # NOTES:
 #
