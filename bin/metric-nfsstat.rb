@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
 #
 #   metric-nfsstat
 #
@@ -33,6 +33,7 @@ class NfsstatMetrics < Sensu::Plugin::Metric::CLI::Graphite
          short: '-s SCHEME',
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.nfsstat"
+
   def run
     output = `/usr/sbin/nfsstat -l`
 
