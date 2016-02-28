@@ -35,7 +35,11 @@ class NfsstatMetrics < Sensu::Plugin::Metric::CLI::Graphite
          default: "#{Socket.gethostname}.nfsstat"
 
   def run
-    output = `/usr/sbin/nfsstat -l`
+    begin
+      output = `/usr/sbin/nfsstat -l`
+    rescue Errno::ENOENT => err
+      unknown err
+    end
 
     output.each_line do |line|
       next unless /^nfs\s+(.+):\s+(\d+)/ =~ line
