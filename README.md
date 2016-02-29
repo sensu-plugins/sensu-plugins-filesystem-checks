@@ -17,8 +17,9 @@
  * bin/check-fs-writable.rb
  * bin/check-mtime.rb
  * bin/check-tail.rb
- * bin/metric-dirsize.rb
- * bin/metric-filesize.rb
+ * bin/metrics-dirsize.rb
+ * bin/metrics-filesize.rb
+ * bin/metrics-nfsstat.rb
 
 ## Usage
 
