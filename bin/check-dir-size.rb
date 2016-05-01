@@ -24,7 +24,7 @@
 #                     [-w|--warn] <size, in bytes, to warn on>
 #                     [-c|--critical] <size, in bytes, to go CRITICAL on>
 #                     [-p|--du-path] <path/to/du>
-#                     [--ignore_missing]
+#                     [--ignore-missing]
 #
 # EXAMPLE:
 #   check-dir-size.rb /var/spool/example_dir -w 1500000 -c 2000000
