@@ -42,14 +42,14 @@ class CheckFileSize < Sensu::Plugin::Check::CLI
          short: '-w SIZE',
          long: '--warn SIZE',
          proc: proc(&:to_i),
-         default: 2_000_000
+         default: 400_000_000
 
   option :crit,
          description: 'The size (in bytes) of the file where CRITICAL is raised',
          short: '-c SIZE',
          long: '--critical SIZE',
          proc: proc(&:to_i),
-         default: 3_000_000
+         default: 500_000_000
 
   option :ignore_missing,
          short: '-i',
