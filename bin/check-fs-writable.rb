@@ -79,7 +79,9 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
     vol_groups = acquire_vol_groups.split("\n")
     vol_groups.each do |vol_group|
       `grep #{vol_group} /proc/self/mounts | awk '{print $2, $4}' | awk -F, '{print $1}' | awk '{print $1, $2}'`.split("\n").each do |mnt|
-        mnt_pts << mnt
+        mount_type_none = `mount | grep ' #{mnt.partition(' ').first} ' | sed -e "s/^.* type //g;s/ .*//g"`.strip
+        puts "#{mnt.partition(' ').first} will be skipped because seems to be a bind/chroot mount" if mount_type_none == 'none' && config[:debug]
+        mnt_pts << mnt unless mount_type_none == 'none'
       end
     end
     mnt_pts
