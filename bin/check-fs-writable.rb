@@ -143,6 +143,9 @@ class CheckFSWritable < Sensu::Plugin::Check::CLI
       file.close
       file.unlink
     end
+  rescue Errno::EPERM, Errno::ENOENT, Errno::EIO, Errno::EACCES, Errno::ENOSPC, Errno::EROFS => e
+  $stderr.puts "Caught the exception: #{e}"
+  exit -1
   end
 
   # Main function
