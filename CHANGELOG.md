@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- Bumpped required ruby to 2.1
+
 ### Added
 - Added 'metrics-nfsstat.rb' for collecting nfsstat metrics
 
