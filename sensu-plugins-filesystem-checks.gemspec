@@ -6,7 +6,8 @@ require 'date'
 # if RUBY_VERSION < '2.0.0'
 #   require 'sensu-plugins-filesystem-checks'
 # else
-  require_relative 'lib/sensu-plugins-filesystem-checks'
+
+require_relative 'lib/sensu-plugins-filesystem-checks'
 # end
 
 # pvt_key = '~/.ssh/gem-private_key.pem'
