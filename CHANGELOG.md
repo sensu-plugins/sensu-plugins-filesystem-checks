@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Added
+- Added support for globbing in 'check-file-exists.rb'
 - Added 'metrics-nfsstat.rb' for collecting nfsstat metrics
 
 ### Changed
