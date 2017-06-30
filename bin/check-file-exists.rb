@@ -1,4 +1,5 @@
-﻿#! /usr/bin/env ruby
+#! /usr/bin/env ruby
+# encoding: UTF-8
 #
 #   check-file-exists
 #
