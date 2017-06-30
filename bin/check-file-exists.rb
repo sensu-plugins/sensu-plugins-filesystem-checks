@@ -18,6 +18,9 @@
 # And then set it ok again with:
 # rm /tmp/CRITICAL
 #
+# Supports globbing for basic wildcard matching
+# Wildcard charaters must be quoted or escaped to prevent shell expansion
+#
 # OUTPUT:
 #   plain text
 #
@@ -54,14 +57,30 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
          default: '/tmp/UNKNOWN'
 
   def run
-    if config[:critical] && File.exist?(config[:critical])
-      critical "#{config[:critical]} exists!"
-    elsif config[:warning] && File.exist?(config[:warning])
-      warning "#{config[:warning]} exists!"
-    elsif config[:unknown] && File.exist?(config[:unknown])
-      unknown "#{config[:unknown]} exists!"
+    critical_values = []
+    warning_values = []
+    unknown_values = []
+
+    Dir.glob(config[:critical]).each do |file|
+      critical_values << file
+    end
+
+    Dir.glob(config[:warning]).each do |file|
+      warning_values << file
+    end
+
+    Dir.glob(config[:unknown]).each do |file|
+      unknown_values << file
+    end
+
+    if critical_values.any?
+      critical "#{critical_values.count} matching file(s) found: #{critical_values.join(', ')}"
+    elsif warning_values.any?
+      warning "#{warning_values.count} matching file(s) found: #{warning_values.join(', ')}"
+    elsif unknown_values.any?
+      unknown "#{unknown_values.count} matching file(s) found: #{unknown_values.join(', ')}"
     else
-      ok 'No test files exist'
+      ok 'No matching files found'
     end
   end
 end
