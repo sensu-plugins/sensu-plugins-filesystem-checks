@@ -5,8 +5,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Added
+- Testing on Ruby 2.3.0
 - Added support for globbing in 'check-file-exists.rb'
 - Added 'metrics-nfsstat.rb' for collecting nfsstat metrics
+
+### Breaking Changes
+- Dropped Ruby 1.9 support
 
 ### Changed
 - Renamed metric-{dirsize,filename} to metrics-{dirsize,filename}
