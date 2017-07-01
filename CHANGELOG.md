@@ -4,10 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.0.0] - 2017-07-01
 ### Added
-- Testing on Ruby 2.3.0
-- Added support for globbing in 'check-file-exists.rb'
-- Added 'metrics-nfsstat.rb' for collecting nfsstat metrics
+- Added testing on Ruby 2.3.0 (@Evesy)
+- Added support for globbing in 'check-file-exists.rb' (@Evesy)
+- Added 'metrics-nfsstat.rb' for collecting nfsstat metrics (@maoe)
 
 ### Breaking Changes
 - Dropped Ruby 1.9 support
@@ -44,7 +46,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.4...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.3...0.0.4
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.2...0.0.3
