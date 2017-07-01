@@ -3,11 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
 
-if RUBY_VERSION < '2.0.0'
-  require 'sensu-plugins-filesystem-checks'
-else
-  require_relative 'lib/sensu-plugins-filesystem-checks'
-end
+require_relative 'lib/sensu-plugins-filesystem-checks'
 
 # pvt_key = '~/.ssh/gem-private_key.pem'
 
@@ -32,7 +28,7 @@ Gem::Specification.new do |s|
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
-  s.required_ruby_version  = '>= 1.9.3'
+  s.required_ruby_version  = '>= 2.0.0'
   # s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for filesystems'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
