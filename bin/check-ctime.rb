@@ -32,7 +32,7 @@
 # NOTES:
 #
 # LICENSE:
-#   Copyright 2014 Sonian, Inc. and contributors. 
+#   Copyright 2014 Sonian, Inc. and contributors.
 #   <support@sensuapp.org> and <landon.dao@ge.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
@@ -76,33 +76,25 @@ class Ctime < Sensu::Plugin::Check::CLI
          boolean: true,
          default: false
 
-  def get_file()
-    if config[:file]
-        return Dir.glob(config[:file]).first
-    else
-        # Gets oldest file in directory
-        files = Dir.glob(config[:directory] + "/*")
-        if config[:exclude_directories]
-            files = files.select { |f| File.file?(f) }
-        end
-        return files.sort_by { |f| File.ctime f }.first
-    end 
-  end 
+  def selected_file
+    files = Dir.glob(config[:file]) if config[:file]
+    files = Dir.glob(config[:directory] + '/*') if config[:directory]
+    files = files.select { |f| File.file?(f) } if config[:exclude_directories]
+    # Gets oldest file by creation time
+    files.min_by { |f| File.ctime f }
+  end
 
   def run_check(type, age)
-    to_check = config["#{type}_age".to_sym].to_i
-    if to_check > 0 && age >= to_check 
-      send(type, "file is #{age - to_check} seconds past #{type}")
-    end
+    threshold =  config["#{type}_age".to_sym].to_i
+    send(type, "file is #{age - threshold} seconds past #{type}") if threshold > 0 && age >= threshold
   end
 
   def run
     unknown 'No file or directory specified' unless config[:file] || config[:directory]
     unknown 'No warn or critical age specified' unless config[:warning_age] || config[:critical_age]
 
-    file = get_file()
-    if file
-      age = Time.now.to_i - File.ctime(file).to_i
+    if selected_file
+      age = Time.now.to_i - File.ctime(selected_file).to_i
       run_check(:critical, age) || run_check(:warning, age) || ok("file is #{age} seconds old")
     else
       if config[:ok_no_exist]
