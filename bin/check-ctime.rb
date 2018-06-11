@@ -20,8 +20,14 @@
 #   gem: sensu-plugin
 #
 # USAGE:
-#  check-windows-ctime.rb -f myFile.txt -w 600
-#  check-windows-ctime.rb -d myDirectory -w 600 -eo
+#  LINUX
+#  check-ctime.rb -f /path/to/myFile.txt -w 600
+#  check-ctime.rb -d /path/to/myDirectory -w 600 -e
+#
+#  WINDOWS
+#  * Use forward slashes for path!!
+#  check-ctime.rb -f c:/path/to/myFile.txt -w 600
+#  check-ctime.rb -d c:/path/to/myDirectory -w 600 -e
 #
 # NOTES:
 #
