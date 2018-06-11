@@ -10,6 +10,7 @@
 
 ## Files
  * bin/check-checksums.rb
+ * bin/check-ctime.rb
  * bin/check-dir-count.rb
  * bin/check-dir-size.rb
  * bin/check-file-exists.rb
