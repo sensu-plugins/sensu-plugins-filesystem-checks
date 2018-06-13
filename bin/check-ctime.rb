@@ -21,13 +21,13 @@
 #
 # USAGE:
 #  LINUX
-#  check-ctime.rb -f /path/to/myFile.txt -w 600
-#  check-ctime.rb -d /path/to/myDirectory -w 600 -e
+#  /opt/sensu/embedded/bin/check-ctime.rb -f /path/to/myFile.txt -w 600
+#  /opt/sensu/embedded/bin/check-ctime.rb -d /path/to/myDirectory -w 600 -e
 #
 #  WINDOWS
 #  * Use forward slashes for path!!
-#  check-ctime.rb -f c:/path/to/myFile.txt -w 600
-#  check-ctime.rb -d c:/path/to/myDirectory -w 600 -e
+#  /opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/check-ctime.rb -f c:/path/to/myFile.txt -w 600
+#  /opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/check-ctime.rb -d c:/path/to/myDirectory -w 600 -e
 #
 # NOTES:
 #
@@ -52,12 +52,12 @@ class Ctime < Sensu::Plugin::Check::CLI
          short: '-d DIRECTORY',
          long: '--directory DIRECTORY'
 
-  option :warning_age,
+  option :warn,
          description: 'Warn if ctime greater than provided age in seconds',
          short: '-w SECONDS',
          long: '--warning SECONDS'
 
-  option :critical_age,
+  option :crit,
          description: 'Critical if ctime greater than provided age in seconds',
          short: '-c SECONDS',
          long: '--critical SECONDS'
@@ -76,32 +76,32 @@ class Ctime < Sensu::Plugin::Check::CLI
          boolean: true,
          default: false
 
-  def selected_file
-    files = Dir.glob(config[:file]) if config[:file]
-    files = Dir.glob(config[:directory] + '/*') if config[:directory]
-    files = files.select { |f| File.file?(f) } if config[:exclude_directories]
-    # Gets oldest file by creation time
-    files.min_by { |f| File.ctime f }
-  end
-
-  def run_check(type, age)
-    threshold =  config["#{type}_age".to_sym].to_i
-    send(type, "file is #{age - threshold} seconds past #{type}") if threshold > 0 && age >= threshold
-  end
-
   def run
     unknown 'No file or directory specified' unless config[:file] || config[:directory]
     unknown 'No warn or critical age specified' unless config[:warning_age] || config[:critical_age]
 
-    if selected_file
-      age = Time.now.to_i - File.ctime(selected_file).to_i
-      run_check(:critical, age) || run_check(:warning, age) || ok("file is #{age} seconds old")
-    else
-      if config[:ok_no_exist]
-        ok 'file does not exist'
-      else
-        critical 'file not found'
+    requested_files = if config[:file]
+                        Dir.glob(config[:file]
+                      elsif config[:directory]
+                        Dir.glob(config[:directory] + '/*')
+                      end
+
+    if !requested_files.empty?
+      if config[:exclude_directories]
+        requested_files = requested_files.reject { |f| File.directory?(f) } 
       end
+
+      # Gets oldest file by creation time
+      oldest_file = requested_files.min_by { |f| File.ctime f }
+      age = Time.now.to_i - File.ctime(oldest_file).to_i
+
+      critical "file is #{age - threshold} seconds past" if age >= config[:crit].to_i
+      warning "file is #{age - threshold} seconds past" if age >= config[:warn].to_i
+      ok "file is #{age} seconds old"
+    elsif config[:ok_no_exist]
+      ok 'file does not exist'
+    else
+      critical 'file not found'
     end
   end
 end
