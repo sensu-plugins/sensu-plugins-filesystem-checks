@@ -26,8 +26,8 @@
 #
 #  WINDOWS
 #  * Use forward slashes for path!!
-#  /opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/check-ctime.rb -f c:/path/to/myFile.txt -w 600
-#  /opt/sensu/embedded/bin/ruby /opt/sensu/embedded/bin/check-ctime.rb -d c:/path/to/myDirectory -w 600 -e
+#  c:/opt/sensu/embedded/bin/ruby c:/opt/sensu/embedded/bin/check-ctime.rb -f c:/path/to/myFile.txt -w 600
+#  c:/opt/sensu/embedded/bin/ruby c:/opt/sensu/embedded/bin/check-ctime.rb -d c:/path/to/myDirectory -w 600 -e
 #
 # NOTES:
 #
@@ -78,25 +78,25 @@ class Ctime < Sensu::Plugin::Check::CLI
 
   def run
     unknown 'No file or directory specified' unless config[:file] || config[:directory]
-    unknown 'No warn or critical age specified' unless config[:warning_age] || config[:critical_age]
+    unknown 'No warn or critical age specified' unless config[:warn] || config[:crit]
 
     requested_files = if config[:file]
-                        Dir.glob(config[:file]
+                        Dir.glob(config[:file])
                       elsif config[:directory]
                         Dir.glob(config[:directory] + '/*')
                       end
 
     if !requested_files.empty?
-      if config[:exclude_directories]
-        requested_files = requested_files.reject { |f| File.directory?(f) } 
+      if config[:directory] && config[:exclude_directories]
+        requested_files = requested_files.reject { |f| File.directory?(f) }
       end
 
       # Gets oldest file by creation time
       oldest_file = requested_files.min_by { |f| File.ctime f }
       age = Time.now.to_i - File.ctime(oldest_file).to_i
 
-      critical "file is #{age - threshold} seconds past" if age >= config[:crit].to_i
-      warning "file is #{age - threshold} seconds past" if age >= config[:warn].to_i
+      critical "file is #{age - config[:crit].to_i} seconds past critical" if config[:crit] && age >= config[:crit].to_i
+      warning "file is #{age - config[:warn].to_i} seconds past warning" if config[:warn] && age >= config[:warn].to_i
       ok "file is #{age} seconds old"
     elsif config[:ok_no_exist]
       ok 'file does not exist'
