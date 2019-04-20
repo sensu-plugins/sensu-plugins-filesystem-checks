@@ -1,12 +1,10 @@
 language: ruby
+services: docker
 cache:
 - bundler
 install:
 - bundle install
 rvm:
-- 2.0
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -19,17 +17,24 @@ script:
 - bundle exec rake default
 - gem build sensu-plugins-filesystem-checks.gemspec
 - gem install sensu-plugins-filesystem-checks-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
-  provider: rubygems
+- provider: rubygems
   api_key:
     secure: TGl7vZCnZoC7GmLkcBCihPCb9gTysLXpFJ4EpufVBzLj14zB6eh4D5pmmj/NDXzJ75MjP/VXk/aRSMN4Y5P9b3F23U7Bs3V2jf0waTCXambgmfuogMCAQ3wAY63bvQqGy2AMdvIo8SCbqLZ66SYQSQ2QgLCwFFnPW/QNOS3DGaM=
   gem: sensu-plugins-filesystem-checks
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
     rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-filesystem-checks
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-filesystem-checks
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
+    
