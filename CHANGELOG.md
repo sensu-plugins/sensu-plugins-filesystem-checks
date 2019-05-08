@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [2.0.0] - 2019-05-07
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
 - Bump `sensu-plugin` dependency from `~> 1.2` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29)
@@ -54,7 +56,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.4...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.3...0.0.4
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks/compare/0.0.3...0.0.4
