@@ -56,11 +56,15 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
   option :unknown,
          short: '-u UNKNOWN_FILE',
          default: '/tmp/UNKNOWN'
+  option :present,
+         short: '-p PRESENT_FILE',
+         default: '/tmp/PRESENT'
 
   def run
     critical_values = []
     warning_values = []
     unknown_values = []
+    present_values = []
 
     Dir.glob(config[:critical]).each do |file|
       critical_values << file
@@ -73,6 +77,10 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
     Dir.glob(config[:unknown]).each do |file|
       unknown_values << file
     end
+    
+    Dir.glob(config[:present]).each do |file|
+      present_values << file
+    end
 
     if critical_values.any?
       critical "#{critical_values.count} matching file(s) found: #{critical_values.join(', ')}"
@@ -80,6 +88,8 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
       warning "#{warning_values.count} matching file(s) found: #{warning_values.join(', ')}"
     elsif unknown_values.any?
       unknown "#{unknown_values.count} matching file(s) found: #{unknown_values.join(', ')}"
+    elsif present_values.any?
+      ok "#{present_values.count} matching file(s) found: #{present_values.join(', ')}"
     else
       ok 'No matching files found'
     end
