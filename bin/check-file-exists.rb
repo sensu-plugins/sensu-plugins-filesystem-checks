@@ -88,8 +88,8 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
       warning "#{warning_values.count} matching file(s) found: #{warning_values.join(', ')}"
     elsif unknown_values.any?
       unknown "#{unknown_values.count} matching file(s) found: #{unknown_values.join(', ')}"
-    elsif present_values.any?
-      ok "#{present_values.count} matching file(s) found: #{present_values.join(', ')}"
+    elsif present_values.empty?
+      critical "No matching file found"
     else
       ok 'No matching files found'
     end
