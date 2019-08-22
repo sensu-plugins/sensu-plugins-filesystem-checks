@@ -79,9 +79,7 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
     end
 
     Dir.glob(config[:present]).each do |filename|
-      if File.file?(filename)
-        present_values << file
-      else
+      unless File.file?(filename)
         not_present_values << file
       end  
     end
