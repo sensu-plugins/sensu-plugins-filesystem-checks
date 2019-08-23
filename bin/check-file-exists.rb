@@ -46,19 +46,23 @@ require 'sensu-plugin/check/cli'
 
 class CheckFileExists < Sensu::Plugin::Check::CLI
   option :critical,
-         short: '-c CRITICAL_FILE',
+         short: '-c CRITICAL',
+         long: '--critical CRITICAL',
          default: '/tmp/CRITICAL'
 
   option :warning,
-         short: '-w WARNING_FILE',
+         short: '-w WARNING',
+         long: '--warning WARNING',
          default: '/tmp/WARNING'
 
   option :unknown,
-         short: '-u UNKNOWN_FILE',
+         short: '-u UNKNOWN',
+         long: '--unknown UNKNOWN',
          default: '/tmp/UNKNOWN'
-  
+
   option :present,
-         short: '-p PRESENT_FILE'
+         short: '-p PRESENT',
+         long: '--present PRESENT'
 
   def run
     critical_values = []
@@ -78,10 +82,10 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
       unknown_values << file
     end
 
-    Dir.glob(config[:present]).each do |filename|
-      unless File.file?(filename)
-        not_present_values << file
-      end  
+    unless config[:present].nil?
+      unless File.exists?(config[:present])
+        not_present_values << config[:present]
+      end
     end
 
     if critical_values.any?
@@ -92,6 +96,8 @@ class CheckFileExists < Sensu::Plugin::Check::CLI
       unknown "#{unknown_values.count} matching file(s) found: #{unknown_values.join(', ')}"
     elsif not_present_values.any?
       critical "#{not_present_values.count} matching file(s) not found: #{not_present_values.join(', ')}"
+    elsif config[:present].instance_of?(String)
+      ok "Matching file(s) found: #{config[:present]}"
     else
       ok 'No matching files found'
     end
