@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Added
+- Updated asset build targets to support centos6
+
 ## [2.0.0] - 2019-05-07
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
