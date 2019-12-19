@@ -6,6 +6,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased]
 
 ## [2.1.0] - 2019-12-12
+### Changed
+- Updated bundler development depedency to '~> 2.1'
+- Updated README to conform with standardization guidelines (sensu-plugins/community#134)
+
 ### Added
 - Updated asset build targets to support centos6
 
