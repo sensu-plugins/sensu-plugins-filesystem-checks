@@ -8,6 +8,13 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Updated asset build targets to support centos6
 
+## [2.0.1] - 2020-07-13
+### Added
+- 'check-ctime.rb' for checking the file created time (@landondao1)
+
+### Removed
+- Bonsai default [platform list](https://github.com/sensu/sensu-go-bonsai-asset/blob/85b1bc1598b4e330f7f75f4dd11e3e0445634d84/ruby-runtime/travis-build-ruby-plugin-assets.sh#L12) does not contain "centos" anymore.
+
 ## [2.0.0] - 2019-05-07
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.

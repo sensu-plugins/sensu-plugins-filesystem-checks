@@ -27,6 +27,7 @@ This plugin provides native instrumentation for monitoring and metrics collectio
 
 ### Files
  * bin/check-checksums.rb
+ * bin/check-ctime.rb
  * bin/check-dir-count.rb
  * bin/check-dir-size.rb
  * bin/check-file-exists.rb
@@ -37,7 +38,7 @@ This plugin provides native instrumentation for monitoring and metrics collectio
  * bin/metrics-dirsize.rb
  * bin/metrics-filesize.rb
  * bin/metrics-nfsstat.rb
- 
+
 **check-checksums**
 Checks a file against its checksum.
 
@@ -97,7 +98,7 @@ Usage: metrics-dirsize.rb (options)
 ### Sensu Go
 #### Asset registration
 
-Assets are the best way to make use of this plugin. If you're not using an asset, please consider doing so! If you're using sensuctl 5.13 or later, you can use the following command to add the asset: 
+Assets are the best way to make use of this plugin. If you're not using an asset, please consider doing so! If you're using sensuctl 5.13 or later, you can use the following command to add the asset:
 
 `sensuctl asset add sensu-plugins/sensu-plugins-logs`
 
