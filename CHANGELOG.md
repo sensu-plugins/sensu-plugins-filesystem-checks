@@ -7,6 +7,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Added 'check-ctime.rb' for checking the file created time (@landondao1)
 
 ## [Unreleased]
+### Removed
+- Removed Bonsai reference for generic "centos" assets.
 
 ## [2.1.0] - 2020-07-16
 ### Added
